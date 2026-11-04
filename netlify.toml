@@ -3,7 +3,7 @@
   publish = "client/dist"
 
 [build.environment]
-  VITE_API_BASE_URL = "https://campusflow-api.onrender.com"
+  VITE_API_BASE_URL = "https://campusflow-api-edu6.onrender.com"
 
 [[redirects]]
   from = "/*"
