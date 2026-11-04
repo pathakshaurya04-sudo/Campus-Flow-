@@ -49,9 +49,9 @@ Never replace existing `server/.env` without preserving its credentials. The ser
 
 ### Frontend
 
-By default, Vite proxies `/api` requests to `http://localhost:3000`; no client secret or API key is needed. To use a different backend origin, set `VITE_API_BASE_URL` in `client/.env.local` and configure the backend's `CLIENT_URL` to match the browser origin. Only public/non-secret configuration belongs in `VITE_*` variables.
+By default, Vite proxies `/api` requests to `http://localhost:3000`; no client secret or API key is needed. Production builds default to the deployed Render API origin, `https://campusflow-api-edu6.onrender.com`. To use a different backend origin, set `VITE_API_BASE_URL` in `client/.env.local` or the deployment environment. Configure the backend's `CLIENT_URL` to match the browser origin. Only public/non-secret configuration belongs in `VITE_*` variables.
 
-In Vercel, set `VITE_API_BASE_URL` to the Render API origin, for example `https://your-render-service.onrender.com` (no trailing slash or `/api`). This value is public configuration; never put Supabase or JWT secrets in a `VITE_*` variable.
+In Vercel, the production build defaults to the current Render API origin. If you use another backend, set `VITE_API_BASE_URL` to its origin (no trailing slash or `/api`). This value is public configuration; never put Supabase or JWT secrets in a `VITE_*` variable.
 
 ### Vercel deployment
 
@@ -59,8 +59,8 @@ When deploying this `department-management-system` folder, the root
 `vercel.json` builds the Vite app from `client` and serves `client/dist`,
 including the SPA route rewrite. If configuring the Vercel project manually,
 use `npm --prefix client run build` as the build command and `client/dist` as
-the output directory. Set `VITE_API_BASE_URL` in the Vercel project environment
-variables before building.
+the output directory. If you override `VITE_API_BASE_URL`, set it in the Vercel
+project environment variables before building.
 
 ### Netlify deployment
 
@@ -70,9 +70,9 @@ Vite's development dependencies), builds the app from `client`, publishes
 drag-and-drop deploy, first run `npm --prefix client ci --include=dev` and
 `npm --prefix client run build`, then upload the contents of `client/dist`
 (not the project root or `client` source folder). The Netlify build config
-sets the public API origin to `https://campusflow-api.onrender.com`; update it
-if the Render service uses a different hostname. Set the Render service's
-`CLIENT_URL` to the exact Netlify site origin before testing login.
+sets the public API origin to
+`https://campusflow-api-edu6.onrender.com`. Set the Render service's `CLIENT_URL`
+to the exact Netlify site origin before testing login.
 
 ## Database setup
 
