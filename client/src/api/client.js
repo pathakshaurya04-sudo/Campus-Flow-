@@ -1,7 +1,7 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(
-  /\/+$/,
-  "",
-);
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL ||
+  (import.meta.env.PROD ? "https://campusflow-api-edu6.onrender.com" : "")
+).replace(/\/+$/, "");
 const ACCESS_TOKEN_KEY = "dms.accessToken";
 
 export class ApiError extends Error {
